@@ -18,5 +18,5 @@ func main() {
 		return
 	}
 
-	router.Initialize()
+	router.Init()
 }
