@@ -1,19 +1,17 @@
 package handler
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
 func CreateOpeningHandler(context *gin.Context) {
-	context.JSON(http.StatusOK, gin.H{
-		"message": "CREATE Opening",
-	})
-
-	request := struct {
-		role string
-	}{}
+	request := CreateOpeningRequest{}
 
 	context.BindJSON(&request)
+
+	err := db.Create(&request).Error
+	if err != nil {
+		logger.Errorf("error creating opening: %v", err.Error())
+		return
+	}
 }

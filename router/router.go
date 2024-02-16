@@ -4,7 +4,7 @@ import (
 	gin "github.com/gin-gonic/gin"
 )
 
-func Initialize() {
+func Init() {
 	router := gin.Default()
 
 	initializeRouter(router)
