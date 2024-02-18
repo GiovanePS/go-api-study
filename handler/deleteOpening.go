@@ -12,7 +12,7 @@ func DeleteOpeningHandler(context *gin.Context) {
 	id := context.Query("id")
 
 	if id == "" {
-		sendError(context, http.StatusBadGateway, errParamIsRequired("id", "queryParameter").Error())
+		sendError(context, http.StatusBadRequest, errParamIsRequired("id", "queryParameter").Error())
 		return
 	}
 
