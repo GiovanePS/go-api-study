@@ -23,7 +23,7 @@ func DeleteOpeningHandler(context *gin.Context) {
 		return
 	}
 
-	if err := db.Delete(&opening).Error; err != nil {
+	if err := db.Unscoped().Delete(&opening).Error; err != nil {
 		sendError(context, http.StatusInternalServerError, fmt.Sprintf("error on deleting opening with id %s.", id))
 	}
 
