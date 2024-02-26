@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 
+	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
 
@@ -14,9 +15,14 @@ var (
 func Init() error {
 	var err error
 
+	err = godotenv.Load(".env")
+	if err != nil {
+		return fmt.Errorf("dotenv error: %v", err.Error())
+	}
+
 	db, err = InitializePostgreSQL()
 	if err != nil {
-		return fmt.Errorf("initializing error: %v", err)
+		return fmt.Errorf("postgres error: %v", err.Error())
 	}
 
 	return nil
